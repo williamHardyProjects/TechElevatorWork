@@ -87,19 +87,19 @@ public class Lecture {
 		10. Create an int variable that holds the difference between 121 and 27.
 		*/
 		
-		int number121 = 121;
-		int number27 = 27;
-		int difference = number121 - number27;
+		int initialInteger = 121;
+		int integerToSubtract = 27;
+		int difference = initialInteger - integerToSubtract;
 		System.out.println("10. 121 - 27 = " + difference);
 
 		/*
 		11. Create a double that holds the addition of 12.3 and 32.1.
 		*/
 		
-		double one11 = 12.3;
-		double two11 = 32.1;
-		double answer11 = one11 + two11;
-		System.out.println("11. 12.3 + 32.1 = " + answer11);
+		double initialDoubleValue = 12.3;
+		double doubleToAdd = 32.1;
+		double sumOfDoubles = initialDoubleValue + doubleToAdd;
+		System.out.println("11. 12.3 + 32.1 = " + sumOfDoubles);
 		
 
 		/*
@@ -173,62 +173,67 @@ public class Lecture {
 		18. What is 4.4 divided by 2.2?
 		*/
 		
-		double numerator18 = 4.4;
-		double denominator18 = 2.2;
-		double answer18 = numerator18 / denominator18;
-		System.out.println("18. 4.4 / 2.2 = " + answer18);
+		double numeratorDouble = 4.4;
+		double denominatorDouble = 2.2;
+		double quotientDouble = numeratorDouble / denominatorDouble;
+		System.out.println("18. 4.4 / 2.2 = " + quotientDouble);
 
 		
 		
 		/*
 		19. What is 5.4 divided by 2?
-		*/		
-		double numerator19 = 5.4;
-		int denominator19 = 2;
-		double answer19 = numerator19 / denominator19;
-		System.out.println("19. 5.4 / 2 = " + answer19);
+		*/	
+		//reuse the same variable	
+		numeratorDouble = 5.4;
+		int denominatorInteger = 2;
+		quotientDouble = numeratorDouble / denominatorInteger;
+		System.out.println("19. 5.4 / 2 = " + quotientDouble);
 
 		/*
 		20. What is 5 divided by 2?
 		*/
-		int numerator20 = 5;
-		int denominator20 = 2;
-		double answer20 = numerator20 / denominator20;
-		System.out.println("20. 5 / 2 = " + answer20);
+		int numeratorInteger = 5;
+		denominatorInteger = 2;
+		//integer division truncates the remainder
+		int quotientInteger = numeratorInteger / denominatorInteger;
+		System.out.println("20. 5 / 2 = " + quotientInteger);
 
 		/*
 		21. What is 5.0 divided by 2?
 		*/
-		double numerator21 = 5;
-		int denominator21 = 2;
-		double answer21 = numerator21 / denominator21;
-		System.out.println("21. 5.0 / 2 = " + answer21);
+		numeratorDouble = 5;
+		denominatorInteger = 2;
+		// if either the numerator or denominator are a double then this will be double division
+		quotientDouble = numeratorDouble / denominatorInteger;
+		System.out.println("21. 5.0 / 2 = " + quotientDouble);
 
 		/*
 		22. What is 66.6 divided by 100? Is the answer you get right or wrong?
 		*/
 		
-		double numerator22 = 66.6;
-		int denominator22 = 100;
-		double answer22 = numerator22  / denominator22;
-		System.out.println("22. " + answer22);
+		numeratorDouble = 66.6;
+		denominatorInteger = 100;
+		quotientDouble = numeratorDouble  / denominatorInteger;
+		System.out.println("22. " + quotientDouble);
 
 		/*
 		23. If I divide 5 by 2, what's my remainder?
 		*/
 		
-		int one23 = 19;
-		int two23 = 4;
-		int division = one23 / two23;
-		int remainder = one23 % two23; // % returns the remainder
-		System.out.println("23. 19 / 4 =  " + division + " R" + remainder);
+		numeratorInteger = 19;
+		denominatorInteger = 4;
+		quotientInteger = numeratorInteger / denominatorInteger;
+		int remainderInteger = numeratorInteger % denominatorInteger; // % returns the remainder
+		System.out.println("23. 19 / 4 =  " + quotientInteger + " R" + remainderInteger);
 
 		/*
 		24. What is 1,000,000,000 * 3?
 		*/
 
-		System.out.println(Integer.MAX_VALUE);
-		System.out.println(Integer.MAX_VALUE + 1);
+		// // can determine the maximum value that an int can be
+		// System.out.println(Integer.MAX_VALUE);
+		// // adding 1 to the max value cycles to the min value of an int
+		// System.out.println(Integer.MAX_VALUE + 1);
 		
 		int billion = 1000000000;
 		long number = 3;
