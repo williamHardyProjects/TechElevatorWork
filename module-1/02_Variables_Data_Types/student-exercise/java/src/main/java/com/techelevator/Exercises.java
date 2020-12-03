@@ -444,8 +444,8 @@ public class Exercises {
 		int totalCupcakes = 96;
 		int totalChildren = 8;
 		
-		int cupcakesPerPerson = totalCupcakes/totalPeople;
-		System.out.println("39. totalCupcakes/totalPeople = " + cupcakesPerPerson);
+		int cupcakesPerPerson = totalCupcakes/totalChildren;
+		System.out.println("39. totalCupcakes/totalChildren = " + cupcakesPerPerson);
 		
 		
 
