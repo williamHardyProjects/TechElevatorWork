@@ -9,14 +9,14 @@ public class Cow extends FarmAnimal
 		super("Cow", "moo!");
 	}	
 	
-	public boolean isEating()
+	public void startEating()
 	{
-		return isEating;
+		isEating = true;
 	}
 
-	public void setEating(boolean isEating)
+	public void stopEating()
 	{
-		this.isEating = isEating;
+		isEating = false;
 	}
 
 	@Override
