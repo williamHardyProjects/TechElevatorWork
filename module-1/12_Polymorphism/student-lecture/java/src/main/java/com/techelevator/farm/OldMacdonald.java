@@ -1,16 +1,22 @@
 package com.techelevator.farm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OldMacdonald
 {
 	public static void main(String[] args)
 	{
 
-		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken() };
+		List<FarmAnimal> farmAnimals = new ArrayList<FarmAnimal>();
+		farmAnimals.add(new Cow());
+		farmAnimals.add(new Chicken());
 
 		for (FarmAnimal animal : farmAnimals)
 		{
 			String name = animal.getName();
 			String sound = animal.getSound();
+
 			System.out.println("Old MacDonald had a farm, ee, ay, ee, ay, oh!");
 			System.out.println("And on his farm he had a " + name + ", ee, ay, ee, ay, oh!");
 			System.out.println("With a " + sound + " " + sound + " here");

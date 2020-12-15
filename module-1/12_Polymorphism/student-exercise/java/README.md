@@ -55,6 +55,8 @@ Add the following method to allow `BankAccount`s to transfer money to another `B
 | ---------- | ----------- | ----------- |
 | `transferTo(BankAccount destinationAccount, int transferAmount)` | `int` | Withdraws `transferAmount` from this account and deposits it into `destinationAccount`.|
 
+
+
 New unit tests have been added for this section. This section is complete when the `CheckingAccountTest`, `SavingsAccountTest`, and `BankAccountTest` unit tests all pass.
 
 >Note: Initially, the unit tests may show `transferTo()` as a ***missing method error*** rather than a failing test until you add the method. Once added, the `transferTo()` method may still fail. It won't be because it's missing.
@@ -63,8 +65,8 @@ New unit tests have been added for this section. This section is complete when t
 
 The `Accountable` interface means that an object can be used in the accounting process for the customer.
 
-| Method Name | Return Type | Description                                          |
-| -------------- | --------- | --- | --- | ---------------------------------------------------- |
+| Method Name | Return Type | Description |
+| -------------- | --------- | ---------------------------------------------------- |
 | `getBalance()`        | `int`      | Returns the balance value of the account in dollars. |
 
 #### Step Three: Make `BankAccount` accountable
@@ -75,7 +77,7 @@ Add the `Accountable` interface to `BankAccount`, making `BankAccount` and all t
 
 A `CreditCardAccount` isn't a `BankAccount` but "can-do" `Accountable`.
 
-| Constructor                                                       | Description                                                                                                                             |
+| Constructor | Description |
 | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `CreditCardAccount(String accountHolder, String accountNumber)` | A new credit card account requires an account holder name and account number. The debt defaults to a 0 dollar balance. |
 
