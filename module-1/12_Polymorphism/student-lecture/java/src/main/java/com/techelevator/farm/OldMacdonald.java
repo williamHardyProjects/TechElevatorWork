@@ -1,11 +1,14 @@
 package com.techelevator.farm;
 
-public class OldMacdonald {
-	public static void main(String[] args) {
+public class OldMacdonald
+{
+	public static void main(String[] args)
+	{
 
 		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken() };
 
-		for (FarmAnimal animal : farmAnimals) {
+		for (FarmAnimal animal : farmAnimals)
+		{
 			String name = animal.getName();
 			String sound = animal.getSound();
 			System.out.println("Old MacDonald had a farm, ee, ay, ee, ay, oh!");
