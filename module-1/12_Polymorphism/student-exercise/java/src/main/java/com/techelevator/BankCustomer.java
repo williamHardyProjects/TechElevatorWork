@@ -27,8 +27,8 @@ public class BankCustomer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Object[] getAccounts() {
-		return accounts.toArray();
+	public Accountable[] getAccounts() {
+		return accounts.toArray(new Accountable[accounts.size()]);
 	}
 
 	public void addAccount(Accountable newAccount) {
