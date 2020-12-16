@@ -1,20 +1,24 @@
 package com.techelevator.farm;
 
-public class Tractor implements Singable {
+public class Tractor implements Singable
+{
 
     private String name;
     private String sound;
 
-    public Tractor() {
+    public Tractor()
+    {
         name = "Tractor";
         sound = "vroom!";
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public String getSound() {
+    public String getSound()
+    {
         return sound;
     }
 }
