@@ -1,14 +1,27 @@
 package com.techelevator.farm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class OldMacdonald
 {
 	public static void main(String[] args)
 	{
-		singSong();
+		// how interfaces are used in Java
+		// List is the interface		ArrayList is the Implementation
+		List<Singable> farmThings = new ArrayList<Singable>();
+		// Map is the interface			HashMap is the Implementation
+		Map<String, String> myItems = new HashMap<String, String>();
+		
+		
+		Cow cow = new Cow();
+		System.out.println(cow.toString());
+		
+//		run();
 	}
 
 
@@ -18,11 +31,15 @@ public class OldMacdonald
 		System.out.println();
 
 		List<Singable> farmThings = new ArrayList<Singable>();
+		
+		Cow cow = new Cow();
+		cow.startEating();
 
-		farmThings.add(new Cow());
+		farmThings.add(cow);
 		farmThings.add(new Chicken());
-		farmThings.add(new Pig());
 		farmThings.add(new Tractor());
+//		farmThings.add(new FarmAnimal("Wolf", "ah-ooooo!"));
+//		farmThings.add(new FarmAnimal("Gogledeegoop", "swishee!"));
 
 		for (Singable thing : farmThings)
 		{
@@ -65,7 +82,7 @@ public class OldMacdonald
 
 	public static void run()
 	{
-		Scanner console = new Scanner(System.in);
+		Scanner console = new Scanner(System.in);		
 		
 		System.out.println();
 		System.out.println("****  Welcome to the farm!  ****");
@@ -74,6 +91,7 @@ public class OldMacdonald
 
 		while(true)
 		{
+			// display the options
 			System.out.println("Options ");
 			System.out.println("**********");
 			System.out.println("[1] sing");
@@ -81,11 +99,13 @@ public class OldMacdonald
 			System.out.println("[3] exit");
 			System.out.print("Select and option >>> ");
 
+			// get the user selection
 			String selection = console.nextLine();
 			int option = Integer.parseInt(selection);
 
 			System.out.println();
 
+			// execute the option
 			if(option == 1)
 			{
 				singSong();
@@ -96,6 +116,8 @@ public class OldMacdonald
 			}
 			else
 			{
+				// this is what takes 
+				// me out of the loop
 				break;
 			}
 

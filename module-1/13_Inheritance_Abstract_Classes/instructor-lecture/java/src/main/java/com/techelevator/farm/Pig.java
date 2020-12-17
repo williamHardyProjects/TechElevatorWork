@@ -16,4 +16,10 @@ public class Pig extends FarmAnimal implements Sellable
     {
         return price;
     }
+	
+	public String eat()
+	{
+		startEating();
+		return "the pig is now eating";
+	}
 }
