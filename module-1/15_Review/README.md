@@ -17,6 +17,7 @@ You will want to be confident in these areas
 - Re-work the exercises
 - Re-submit exercises for re-grading
 - Do the **Extra Exercises** for more practice
+- Do the **Assessments** to solidify building classes
 - Go to [CodingBat.com](https://codingbat.com/java) for additional exercises and drills
 - Sign up for a [CodeWars.com](https://www.codewars.com) account and do java challenges
 - Other sites [Advent Of Code](https://adventofcode.com/)
