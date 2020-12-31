@@ -5,6 +5,9 @@ public class NonStart {
     /*
      Given 2 strings, return their concatenation, except omit the first char of each. The strings will
      be at least length 1.
+     Note: (this can be interpreted as both strings will have length 1)
+     Note: (the program is written as if the interpretation should be both strings together
+     with have length at least 1);
      GetPartialString("Hello", "There") → "ellohere"
      GetPartialString("java", "code") → "avaode"
      GetPartialString("shotl", "java") → "hotlava"

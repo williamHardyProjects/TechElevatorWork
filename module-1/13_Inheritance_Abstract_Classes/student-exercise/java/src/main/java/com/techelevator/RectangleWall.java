@@ -30,7 +30,4 @@ public class RectangleWall extends Wall {
 	public String toString() {
 		return getName() +  " (" + length + "x" + height + ") rectangle";
 	}
-	
-	
-
 }
