@@ -1,4 +1,4 @@
-package com.techelevator.ui;
+package com.techelevator.ui.helper;
 
 import java.io.InputStream;
 import java.io.OutputStream;
