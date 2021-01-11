@@ -5,6 +5,9 @@ public class Screen {
 	
 	public static void getMainScreen() {
 		System.out.println();
+		System.out.println("Main Menu");
+		System.out.println("_____________________________________________________________");
+		System.out.println();
 		String option1 = " Display Vending Machine Items ";
 		String option2 = " Purchase ";
 		String option3 = " Exit ";
@@ -26,10 +29,14 @@ public class Screen {
 		System.out.printf("%47s", bottomBorder);
 		System.out.println();
 		System.out.println();
+		System.out.println("_____________________________________________________________");
 		System.out.println();
 	}
 	
 	public static void getPurchaseScreen() {
+		System.out.println();
+		System.out.println("Purchase Menu");
+		System.out.println("_____________________________________________________________");
 		System.out.println();
 		String option1 = " Feed Money ";
 		String option2 = " Select Product ";
@@ -52,6 +59,7 @@ public class Screen {
 		System.out.printf("%47s", bottomBorder);
 		System.out.println();
 		System.out.println();
+		System.out.println("_____________________________________________________________");
 		System.out.println();
 	}
 }
