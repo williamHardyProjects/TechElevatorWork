@@ -13,6 +13,7 @@ import com.techelevator.models.VendingItem;
 import com.techelevator.models.VendingLoader;
 import com.techelevator.models.exceptions.CardDeclinedException;
 import com.techelevator.models.exceptions.InvalidMoneyException;
+import com.techelevator.models.exceptions.InvalidOptionException;
 import com.techelevator.ui.screens.UserInput;
 import com.techelevator.ui.screens.UserOutput;
 
@@ -27,7 +28,14 @@ public class VendingMachine
     {
         while(true)
         {
-            String choice = UserInput.getMainMenuSelection();
+        	String choice = "";
+        	
+        	try {
+        		choice = UserInput.getMainMenuSelection();
+        	}catch(InvalidOptionException e) {
+        		System.out.println(e.getMessage());
+        	}
+            
           
             if(choice.equals(OptionCodes.DISPLAY))
             {
@@ -55,7 +63,13 @@ public class VendingMachine
     		System.out.println();
     		System.out.println("Your current balance is: " + balance);
     		System.out.println();
-    		String choice = UserInput.getPurchaseMenuSelection();
+    		String choice = "";
+    		
+    		try {
+    			choice = UserInput.getPurchaseMenuSelection();
+    		}catch(InvalidOptionException e) {
+    			System.out.println(e.getMessage());
+    		}
     		BigDecimal moneyInserted = new BigDecimal(0);
     		
     		if(choice.equals(OptionCodes.FEED_MONEY)) {

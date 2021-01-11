@@ -9,28 +9,52 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.techelevator.io.IOResources;
+import com.techelevator.models.OptionCodes;
 import com.techelevator.models.VendingItem;
 import com.techelevator.models.exceptions.InvalidMoneyException;
+import com.techelevator.models.exceptions.InvalidOptionException;
 
 public class UserInput {
 	private UserInput() {}
 	
-	public static String getMainMenuSelection() {
+	public static String getMainMenuSelection() throws InvalidOptionException {
 		Screen.getMainScreen();
 		
 		String input;
 		Scanner in = IOResources.getInput();
 		input = in.nextLine();
 		
+		switch(input) {
+		case OptionCodes.DISPLAY:
+			break;
+		case OptionCodes.EXIT:
+			break;
+		case OptionCodes.PURCHASE:
+			break;
+		default:
+			throw new InvalidOptionException("The option entered is invalid", input);
+		}
+		
 		return input;
 	}
 	
-	public static String getPurchaseMenuSelection() {
+	public static String getPurchaseMenuSelection() throws InvalidOptionException {
 		Screen.getPurchaseScreen();
 		
 		String input;
 		Scanner in = IOResources.getInput();
 		input = in.nextLine();
+		
+		switch(input) {
+		case OptionCodes.FEED_MONEY:
+			break;
+		case OptionCodes.FINISH_TRANSACTION:
+			break;
+		case OptionCodes.SELECT_PRODUCT:
+			break;
+		default:
+			throw new InvalidOptionException("The option entered is invalid", input);
+		}
 		
 		return input;
 	}
