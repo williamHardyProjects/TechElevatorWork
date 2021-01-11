@@ -1,24 +1,39 @@
 -- SELECT ... FROM
 -- Selecting the names for all countries
-
+--SELECT * FROM country;
+SELECT name 
+FROM country;
 
 -- Selecting the name and population of all countries
-
+SELECT name
+        , population 
+FROM country;
 
 -- Selecting all columns from the city table
-
+SELECT *
+FROM city;
 
 -- SELECT ... FROM ... WHERE
 -- Selecting the cities in Ohio
+SELECT *
+FROM city
+WHERE district = 'Ohio';
 
 
 -- Selecting countries that gained independence in the year 1776
+SELECT *
+FROM country
+WHERE indepyear = 1776; 
 
 
 -- Selecting countries not in Asia
+SELECT *
+FROM country
+WHERE NOT (continent = 'Asia');
 
 
 -- Selecting countries that do not have an independence year
+
 
 -- Selecting countries that do have an independence year
 
