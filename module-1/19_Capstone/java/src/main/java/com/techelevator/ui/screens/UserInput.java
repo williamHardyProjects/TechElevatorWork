@@ -5,9 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.techelevator.io.IOResources;
 import com.techelevator.models.VendingItem;
+import com.techelevator.models.exceptions.InvalidMoneyException;
 
 public class UserInput {
 	private UserInput() {}
@@ -32,7 +35,9 @@ public class UserInput {
 		return input;
 	}
 	
-	public static BigDecimal getMoney() {
+	public static BigDecimal getMoney() throws InvalidMoneyException {
+		Pattern moneyRegex = Pattern.compile("[^123456789]");
+		
 		System.out.println();
 		System.out.println("Inserting money...");
 		System.out.println("______________________________________________________________");
@@ -48,8 +53,13 @@ public class UserInput {
 			System.out.println("----------------------------------------------------------------");
 			System.out.println();
 			System.out.println();
-			
+		
 			money = in.nextLine();
+			Matcher match = moneyRegex.matcher(money);
+			if (match.find()) {
+				String invalidMoney = match.group();
+				throw new InvalidMoneyException("The money, " + invalidMoney + " is invalid!", invalidMoney);
+			}
 			if (!money.isBlank()) {
 				moneyInserted = moneyInserted.add(new BigDecimal(money));
 			}

@@ -12,6 +12,7 @@ import com.techelevator.models.VendingInventory;
 import com.techelevator.models.VendingItem;
 import com.techelevator.models.VendingLoader;
 import com.techelevator.models.exceptions.CardDeclinedException;
+import com.techelevator.models.exceptions.InvalidMoneyException;
 import com.techelevator.ui.screens.UserInput;
 import com.techelevator.ui.screens.UserOutput;
 
@@ -35,7 +36,7 @@ public class VendingMachine
             else if(choice.equals(OptionCodes.PURCHASE))
             {
             	try {
-            		vend();
+            		vendor();
             	}catch(CardDeclinedException e) {
             		System.out.println(e.getMessage());
             	}
@@ -49,16 +50,21 @@ public class VendingMachine
         }
     }
     
-    public void vend() throws CardDeclinedException {
+    public void vendor() throws CardDeclinedException {
     	while(true) {
     		System.out.println();
     		System.out.println("Your current balance is: " + balance);
     		System.out.println();
     		String choice = UserInput.getPurchaseMenuSelection();
+    		BigDecimal moneyInserted = new BigDecimal(0);
     		
     		if(choice.equals(OptionCodes.FEED_MONEY)) {
+    			try {
+    				moneyInserted = UserInput.getMoney();
+    			}catch(InvalidMoneyException e) {
+    				System.out.println(e.getMessage());
+    			}
     			
-    			BigDecimal moneyInserted = UserInput.getMoney();
     			BigDecimal prevBalance = balance;
     			balance = balance.add(moneyInserted);
     			logger.logMessage("FEED MONEY: $" + prevBalance + " $" + balance);		
@@ -77,7 +83,7 @@ public class VendingMachine
     				balance = change;
     				item = vendingInventory.takeItem(slotID);
     				logger.logMessage(item.getName() + " " + item.getSlotID() + " $" + prevBalance + " $" + balance);
-    				dispense(item);
+    				vend(item);
     			}
     		}else if(choice.equals(OptionCodes.FINISH_TRANSACTION)) {
     			getChange();
@@ -87,7 +93,7 @@ public class VendingMachine
     }
     
     
-    public void dispense(VendingItem item) {
+    public void vend(VendingItem item) {
     	System.out.println();
     	System.out.println("Dispensing item...");
     	System.out.println("__________________________________________");
@@ -104,34 +110,54 @@ public class VendingMachine
     }
     
     public void getChange() {
+    	BigDecimal prevBalance = balance;
     	int pennyBalance = balance.setScale(2).multiply(new BigDecimal(100)).intValue();
-    	System.out.println(pennyBalance);
+    	balance = new BigDecimal(pennyBalance);
+    	
     	int quarter = 25;
     	int dime = 10;
     	int nickel = 5;
     	int quarterQty = 0;
     	int dimeQty = 0;
     	int nickelQty = 0;
+    	
     	ArrayList<Integer> list = new ArrayList<Integer>();
-    	ArrayList<Integer> qtyList = new ArrayList<Integer>();
-    	qtyList.add(quarterQty);
-    	qtyList.add(dimeQty);
-    	qtyList.add(nickelQty);
+    	
     	list.add(quarter);
     	list.add(dime);
     	list.add(nickel);
     
     	for (int i = 0; i < list.size(); i++) {
-    		int dividend = pennyBalance / list.get(i);
-    		System.out.println(dividend);
-    		if (dividend > 0) {
-    			pennyBalance = pennyBalance - list.get(i)*dividend;
-    			qtyList.set(i, dividend);
+    		int quotient = pennyBalance / list.get(i);
+    		if (quotient > 0) {
+    			if (i == 0) {
+    				
+    				int changeSubtract = list.get(i)*quotient;
+    				pennyBalance = pennyBalance - changeSubtract;
+    				BigDecimal changeGiven = new BigDecimal(changeSubtract);
+        			quarterQty = quotient;
+        			balance = balance.subtract(changeGiven);
+    			}
+    			
+    			if (i == 1) {
+    				int changeSubtract = list.get(i)*quotient;
+    				pennyBalance = pennyBalance - changeSubtract;
+    				BigDecimal changeGiven = new BigDecimal(changeSubtract);
+        			dimeQty = quotient;
+        			balance = balance.subtract(changeGiven);
+    			}
+    			
+    			if (i == 2) {
+    				int changeSubtract = list.get(i)*quotient;
+    				pennyBalance = pennyBalance - changeSubtract;
+    				BigDecimal changeGiven = new BigDecimal(changeSubtract);
+        			nickelQty = quotient;
+        			balance = balance.subtract(changeGiven);
+    			}
     		}
     		
     	}
-    	balance = new BigDecimal(0);
-    	
-    	System.out.println("Your change is: Quarters - " + qtyList.get(0) + "| Dimes - " + qtyList.get(1) + "| Nickels - " + qtyList.get(2));
+    	logger.logMessage("GIVE CHANGE: $" + prevBalance + " $" + balance);
+    	System.out.println("Your change is: Quarters - " + quarterQty + "| Dimes - " + dimeQty + "| Nickels - " + nickelQty);
     }
 }
