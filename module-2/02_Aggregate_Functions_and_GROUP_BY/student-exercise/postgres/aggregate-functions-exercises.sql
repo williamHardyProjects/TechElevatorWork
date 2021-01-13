@@ -39,11 +39,11 @@ WHERE continent = 'Africa';
 -- world sorted from highest to lowest. Recall: GNP is express in units of one million US Dollars 
 -- (highest per capita GNP in world: 37459.26)
 
-SELECT ((gnp * 1000000) / population)
+SELECT ((gnp * 1000000) / population) as gnp_per_cap
 FROM country
 WHERE NOT population IS NULL
     AND NOT (population = 0)
-ORDER BY gnp DESC;
+ORDER BY gnp_per_cap DESC;
 
 -- 4. The average life expectancy of countries in South America.
 -- (average life expectancy in South America: 70.9461)
