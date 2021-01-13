@@ -61,7 +61,7 @@ public class VendingMachine
     public void vendor() throws CardDeclinedException {
     	while(true) {
     		System.out.println();
-    		System.out.println("Your current balance is: " + balance);
+    		System.out.println("Your current balance is: $" + balance);
     		System.out.println();
     		String choice = "";
     		

@@ -90,7 +90,7 @@ public class UserInput {
 			
 			System.out.println("************************************");
 			System.out.println();
-			System.out.println("The current money inserted is: " + moneyInserted);
+			System.out.println("The current money inserted is: $" + moneyInserted);
 			System.out.println();
 			System.out.println("************************************");
 

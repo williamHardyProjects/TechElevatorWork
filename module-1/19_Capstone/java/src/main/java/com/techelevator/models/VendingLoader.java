@@ -1,10 +1,12 @@
 package com.techelevator.models;
 
+import com.techelevator.models.Loader;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 import com.techelevator.io.IOResources;
 
