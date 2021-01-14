@@ -224,4 +224,4 @@ SELECT * FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
 --rows relating to film_id of "Euclidean PI" in film_category need to be removed
 --rows relating to film_id of "Euclidean PI" in inventory need to be removed
 
-ROLLBACK TRANSACTION;
+COMMIT TRANSACTION;
