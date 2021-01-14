@@ -1,7 +1,22 @@
 -- Write queries to return the following:
 -- The following changes are applied to the "dvdstore" database.**
 
+BEGIN TRANSACTION;
 -- 1. Add actors, Hampton Avenue, and Lisa Byway to the actor table.
+SELECT * 
+FROM actor;
+
+INSERT INTO actor
+(
+        first_name
+        , last_name
+)
+VALUES
+(
+        'Lisa',
+        'Byway'      
+);
+
 
 -- 2. Add "Euclidean PI", "The epic story of Euclid as a pizza delivery boy in
 -- ancient Greece", to the film table. The movie was released in 2008 in English.
