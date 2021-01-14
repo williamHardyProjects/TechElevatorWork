@@ -10,7 +10,7 @@ SELECT * FROM countrylanguage;
 SELECT name
         , population
 FROM city
-WHERE district = 'Ontario'
+WHERE district = 'Ontario';
 
 -- 2. The name and population of all cities in Montana (1 row)
 SELECT name

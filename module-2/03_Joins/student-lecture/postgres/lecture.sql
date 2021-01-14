@@ -1,16 +1,62 @@
 -- ********* INNER JOIN ***********
 
 -- Let's find out who made payment 16666:
+SELECT * 
+FROM payment
+WHERE payment_id = 16666;
 
 -- Ok, that gives us a customer_id, but not the name. We can use the customer_id to get the name FROM the customer table
 
+SELECT p.*
+        , concat(c.first_name, ' ', c.last_name) AS full_name
+FROM payment AS p
+INNER JOIN customer AS c
+        ON p.customer_id = c.customer_id
+WHERE payment_id = 16666;
+
 -- We can see that the * pulls back everything from both tables. We just want everything from payment and then the first and last name of the customer:
+
+SELECT p.*
+        , concat(c.first_name, ' ', c.last_name) AS full_name
+        , r.return_date
+FROM payment AS p
+INNER JOIN customer AS c
+        ON p.customer_id = c.customer_id
+INNER JOIN rental AS r
+        ON p.rental_id = r.rental_id
+WHERE payment_id = 16666;
 
 -- But when did they return the rental? Where would that data come from? From the rental table, so let’s join that.
 
+
+
 -- What did they rent? Film id can be gotten through inventory.
 
+SELECT p.*
+        , concat(c.first_name, ' ', c.last_name) AS full_name
+        , r.return_date
+        , f.title
+FROM payment AS p
+INNER JOIN customer AS c
+        ON p.customer_id = c.customer_id
+INNER JOIN rental AS r
+        ON p.rental_id = r.rental_id
+INNER JOIN inventory AS i
+        ON r.inventory_id = i.inventory_id
+INNER JOIN film AS f
+        ON i.film_id = f.film_id
+WHERE payment_id = 16666;
+
 -- What if we wanted to know who acted in that film?
+SELECT f.*
+        , fa.*
+        , a.* 
+FROM film AS f
+INNER JOIN film_actor AS fa
+        ON f.film_id = fa.film_id
+INNER JOIN actor AS a
+        ON fa.actor_id = a.actor_id 
+WHERE f.film_id = 948;
 
 -- What if we wanted a list of all the films and their categories ordered by film title
 
