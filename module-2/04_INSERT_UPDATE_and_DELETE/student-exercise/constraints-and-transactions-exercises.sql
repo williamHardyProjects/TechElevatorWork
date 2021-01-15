@@ -70,11 +70,11 @@ INSERT INTO film_actor
 )
 VALUES
 (
-        203
+        201
         , 1001
 ),
 (
-        204
+        202
         , 1001
 );
 
@@ -176,8 +176,8 @@ VALUES
 -- (Did it succeed? Why?)
 -- <did not succeed because there are dependencies for example film_actor has foreign key to film>
 
-DELETE FROM film
-WHERE film_id = 1001;
+--DELETE FROM film
+--WHERE film_id = 1001;
 
 
 
@@ -186,8 +186,8 @@ WHERE film_id = 1001;
 -- (Did it succeed? Why?)
 -- <did not succeed because there are dependencies for example film_category has foreign key to category>
 
-DELETE FROM category
-WHERE category_id = 17;
+--DELETE FROM category
+--WHERE category_id = 17;
 
 
 
@@ -195,8 +195,8 @@ WHERE category_id = 17;
 -- (Did it succeed? Why?)
 -- <succeeded because there are not foreign keys that point to film_category table>
 
-DELETE FROM film_category
-WHERE category_id = 17;
+--DELETE FROM film_category
+--WHERE category_id = 17;
 
 
 
@@ -205,11 +205,11 @@ WHERE category_id = 17;
 -- (Did either deletes succeed? Why?)
 -- <The first worked because foreign keys pointing to row in category table were removed. The second one didn't work because foreign keys to film table still exist>
 
-DELETE FROM category
-WHERE category_id = 17;
+--DELETE FROM category
+--WHERE category_id = 17;
 
-DELETE FROM film
-WHERE film_id = 1001;
+--DELETE FROM film
+--WHERE film_id = 1001;
 
 -- 12. Check database metadata to determine all constraints of the film id, and
 -- describe any remaining adjustments needed before the film "Euclidean PI" can
@@ -224,4 +224,4 @@ SELECT * FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS;
 --rows relating to film_id of "Euclidean PI" in film_category need to be removed
 --rows relating to film_id of "Euclidean PI" in inventory need to be removed
 
-COMMIT TRANSACTION;
+ROLLBACK TRANSACTION;
