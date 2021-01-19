@@ -1,7 +1,6 @@
 package com.techelevator;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,10 +25,10 @@ public class JDBCExample {
 		Statement stmt = conn.createStatement();
 		
 		/* Execute a SQL query and return the results */
-		String sqlActionFilmsReleaseIn2006 = "SELECT film.title, film.release_year "+
-											 "FROM film JOIN film_category ON film.film_id = film_category.film_id "+
-											 "JOIN category ON category.category_id = film_category.category_id "+
-											 "WHERE film.release_year = 2006 "+
+		String sqlActionFilmsReleaseIn2006 = "SELECT film.title, film.release_year " +
+											 "FROM film JOIN film_category ON film.film_id = film_category.film_id " +
+											 "JOIN category ON category.category_id = film_category.category_id " +
+											 "WHERE film.release_year = 2006 " +
 											 "AND category.name = 'Action'";
 		
 		ResultSet results = stmt.executeQuery(sqlActionFilmsReleaseIn2006);
@@ -46,11 +45,11 @@ public class JDBCExample {
 		String firstName = "Nick";
 		String lastName = "Stallone";
 		//String lastName = "O'Malley";     // This is an exmample of non-malicious user input that will cause the query to break
-		String sqlMoviesByActor = "SELECT film.title "+
-								  "FROM film join film_actor on film.film_id = film_actor.film_id "+
-								  "JOIN actor on actor.actor_id = film_actor.actor_id "+
-								  "WHERE actor.first_name = '"+firstName.toUpperCase()+"' "+
-								  "AND actor.last_name = '"+lastName.toUpperCase()+"'";
+		String sqlMoviesByActor = "SELECT film.title " +
+								  "FROM film join film_actor on film.film_id = film_actor.film_id " +
+								  "JOIN actor on actor.actor_id = film_actor.actor_id " +
+								  "WHERE actor.first_name = '" + firstName.toUpperCase() + "' " +
+								  "AND actor.last_name = '" + lastName.toUpperCase() + "'";
 		
 		results = stmt.executeQuery(sqlMoviesByActor);
 		
