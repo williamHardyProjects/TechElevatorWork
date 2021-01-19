@@ -1,4 +1,4 @@
-package com.techelevator.city;
+package com.techelevator.models.dto;
 
 public class City {
 	private Long id;

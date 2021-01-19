@@ -1,9 +1,12 @@
-package com.techelevator.city;
+package com.techelevator.models.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import com.techelevator.models.dto.City;
+import com.techelevator.models.interfaces.CityDAO;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
