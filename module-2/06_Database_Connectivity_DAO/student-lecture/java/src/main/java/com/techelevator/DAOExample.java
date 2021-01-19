@@ -2,9 +2,9 @@ package com.techelevator;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import com.techelevator.city.City;
-import com.techelevator.city.CityDAO;
-import com.techelevator.city.JDBCCityDAO;
+import com.techelevator.models.dto.City;
+import com.techelevator.models.interfaces.CityDAO;
+import com.techelevator.models.dao.JDBCCityDAO;
 
 public class DAOExample {
 

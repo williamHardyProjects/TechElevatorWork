@@ -1,6 +1,8 @@
-package com.techelevator.city;
+package com.techelevator.models.interfaces;
 
 import java.util.List;
+
+import com.techelevator.models.dto.City;
 
 public interface CityDAO {
 
