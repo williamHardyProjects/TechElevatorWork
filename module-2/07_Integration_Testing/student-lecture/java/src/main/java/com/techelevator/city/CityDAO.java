@@ -2,8 +2,8 @@ package com.techelevator.city;
 
 import java.util.List;
 
-public interface CityDAO {
-
+public interface CityDAO 
+{
 	public void save(City newCity);
 
 	public City findCityById(long id);
