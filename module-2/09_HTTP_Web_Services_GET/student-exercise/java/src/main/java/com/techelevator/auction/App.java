@@ -19,23 +19,33 @@ public class App {
     }
 
     public Auction[] listAllAuctions() {
-        // api code here
-        return null;
+  
+        Auction[] auctions = restTemplate.getForObject(API_URL, Auction[].class);
+        return auctions;
     }
 
     public Auction listDetailsForAuction(int id) {
-        // api code here
-        return null;
+    	String auctionUrl = API_URL + "/" + id;
+        Auction auction = restTemplate.getForObject(auctionUrl, Auction.class);
+        return auction;
     }
 
     public Auction[] findAuctionsSearchTitle(String title) {
-        // api code here
-        return null;
+        String searchTitleUrl = API_URL + "?title_like=" + title;
+        Auction[] auctions = new Auction[0];
+        
+        auctions = restTemplate.getForObject(searchTitleUrl, Auction[].class);
+                
+        return auctions;
     }
 
     public Auction[] findAuctionsSearchPrice(double price) {
-        // api code here
-        return null;
+    	String maxPriceUrl = API_URL + "?currentBid_lte=" + price;
+        Auction[] auctions = new Auction[0];
+        
+        auctions = restTemplate.getForObject(maxPriceUrl, Auction[].class);
+                
+        return auctions;
     }
 
     private void run() {
