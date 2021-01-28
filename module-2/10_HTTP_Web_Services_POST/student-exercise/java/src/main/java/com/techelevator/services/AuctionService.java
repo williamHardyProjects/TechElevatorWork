@@ -3,6 +3,7 @@ package com.techelevator.services;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -65,18 +66,48 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-    	// place code here
-    	return null; 
+    	Auction auction = makeAuction(auctionString);
+    	String postAuctionUrl = API_URL;
+    	
+    	HttpHeaders reqHeader = new HttpHeaders();
+    	reqHeader.setContentType(MediaType.APPLICATION_JSON);
+    	
+    	HttpEntity<Auction> request = new HttpEntity<Auction>(auction, reqHeader);
+    	
+    	try {
+    		 Auction resAuctionBody = restTemplate.postForObject(postAuctionUrl, request, Auction.class);
+    		 return resAuctionBody;
+    	}catch(Exception e) {
+    		return null;
+    	}    	
     }
 
     public Auction update(String auctionString) {
-    	// place code here
-    	return null; 
+    	Auction auction = makeAuction(auctionString);
+    	String putAuctionUrl = API_URL + "/" + auction.getId();
+    	
+    	HttpHeaders reqHeader = new HttpHeaders();
+    	reqHeader.setContentType(MediaType.APPLICATION_JSON);
+    	
+    	HttpEntity<Auction> request = new HttpEntity<Auction>(auction, reqHeader);
+    	
+    	try {
+    		 restTemplate.put(putAuctionUrl, request);
+    		 return auction;
+    	}catch(Exception e) {
+    		return null;
+    	} 
     }
 
     public boolean delete(int id) throws RestClientResponseException, ResourceAccessException {
-    	// place code here
-    	return false; 
+    	String deleteUrl = API_URL + "/" + id;
+    	try {
+    		restTemplate.delete(deleteUrl);
+    		return true;
+    	}catch(Exception e) {
+    		return false;
+    	}
+    	 
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
