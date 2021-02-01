@@ -33,11 +33,14 @@ function getNewCard() {
 }
 
 function saveCard() {
-    const caption = document.getElementById('caption_box');
+    let caption = document.getElementById('caption_box');
+    let catPic = document.getElementById('cat_pic');
+    let catFact = document.getElementById('cat_fact');
     caption.style.textAlign = 'center';
     caption.disabled = true;
     cardData['caption'] = caption.value;
-
+	cardData['imgUrl'] = catPic.getAttribute('src');
+	cardData['catFact'] = catFact.innerText;
 
     if( cardData.catCardId != undefined ) {
         // update
