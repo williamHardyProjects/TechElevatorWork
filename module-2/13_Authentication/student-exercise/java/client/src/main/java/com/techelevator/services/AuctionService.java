@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -22,8 +23,12 @@ public class AuctionService {
 
     public Auction[] getAll() throws AuctionServiceException {
         Auction[] auctions = null;
+        HttpEntity entity = makeAuthEntity();
         try {
-            // send request here
+        	ResponseEntity<Auction[]> response = restTemplate.exchange(BASE_URL + "auctions", HttpMethod.GET, entity, Auction[].class);
+        	auctions = response.getBody();
+        	
+       
         } catch (RestClientResponseException ex) {
             throw new AuctionServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
         }
