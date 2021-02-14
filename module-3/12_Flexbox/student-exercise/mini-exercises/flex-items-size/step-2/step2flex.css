@@ -1,0 +1,10 @@
+/* in the images the blue shade boxes appear more than two times the blue tinted boxes */
+.container {
+    display: flex;
+}
+.box {
+    flex-grow: 1;
+}
+.box:nth-child(even) {
+    flex-grow: 2;
+}

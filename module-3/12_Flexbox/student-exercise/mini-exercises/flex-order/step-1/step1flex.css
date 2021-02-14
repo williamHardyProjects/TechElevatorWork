@@ -1,0 +1,6 @@
+.bio {
+    display: flex;
+}
+.bio:nth-child(even)>img {
+    order: 2;
+}

@@ -1,0 +1,10 @@
+/* the space looks of for the li elements when compared to the image*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav>ul {
+    display: flex;
+}

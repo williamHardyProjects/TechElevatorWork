@@ -1,15 +1,23 @@
 header {
     display: flex;
 }
+
+/* instructions were unclear as to whether I should align center
+relative to with of browser window or flex container and if I should only use
+flexbox to achieve this. The image appears to be centered relative
+to browser window. I don't know how to center relative to browser window
+using only flexbox with the logo taking up space on the left*/
+
 nav {
-    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 nav>ul {
     display: flex;
 }
-ul li {
-    
-}
+
 
 
 

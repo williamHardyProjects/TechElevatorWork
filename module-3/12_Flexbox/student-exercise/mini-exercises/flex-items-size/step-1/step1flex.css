@@ -1,0 +1,6 @@
+.container {
+    display: flex;
+}
+.box {
+    flex-grow: 1;
+}
