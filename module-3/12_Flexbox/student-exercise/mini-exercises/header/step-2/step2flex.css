@@ -1,0 +1,21 @@
+header {
+    display: flex;
+}
+nav {
+    text-align: center;
+}
+nav>ul {
+    display: flex;
+}
+ul li {
+    
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+header {
+    display: flex;
+}
+
+/* Step 1 */
+
+nav ul {
+    display: flex;
+}
+
