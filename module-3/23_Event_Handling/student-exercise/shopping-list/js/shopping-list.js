@@ -37,5 +37,45 @@ function displayGroceries() {
   });
 }
 
-setPageTitle();
-displayGroceries();
+window.addEventListener('DOMContentLoaded', () => {
+  setPageTitle();
+  displayGroceries();
+
+  let toggleButton = document.querySelector('#toggleAll');
+
+  toggleButton.addEventListener('click', event => {
+    allItemsIncomplete = !allItemsIncomplete;
+    let items = document.querySelectorAll('ul li');
+
+    if (!allItemsIncomplete) {
+      items.forEach(item => {
+        if (!item.classList.contains('completed')) {
+          item.classList.toggle('completed');
+        }
+      });
+      toggleButton.innerText = 'Mark All Incomplete';
+    }else {
+        items.forEach(item => {
+        if (item.classList.contains('completed')) {
+          item.classList.toggle('completed');
+        }
+      });
+      toggleButton.innerText = 'Mark All Complete';
+    }
+  });
+
+  let shoppingList = document.querySelector('ul');
+
+  shoppingList.addEventListener('click', event => {
+    if (!event.target.classList.contains('completed')) {
+      event.target.classList.toggle('completed')
+    }
+  })
+
+  shoppingList.addEventListener('dblclick', event => {
+    if (event.target.classList.contains('completed')) {
+      event.target.classList.toggle('completed')
+    }
+  });
+    
+});
