@@ -14,15 +14,27 @@ function changeFont()
 }
 
 
-
 /* change class options */
 
+// this is the cleanest options related to toggling classes
+function addClass(className)
+{
+    const div = document.getElementById('content');
+
+    if (div.classList.contains(className))
+        div.classList.remove(className);
+    else
+        div.classList.add(className);
+}
+
+// this overwrites the class
 function addClass_Replace(className)
 {
     const div = document.getElementById('content');
     div.setAttribute('class', className);
 }
 
+// this requires that you manage all of the class replacement logic
 function addClass_option1(className)
 {
     const div = document.getElementById('content');
@@ -44,6 +56,7 @@ function addClass_option1(className)
     div.setAttribute('class', classes.join(' '));
 }
 
+// this requires that you manage all of the class replacement logic
 function addClass_option2(className)
 {
     const div = document.getElementById('content');
@@ -61,14 +74,4 @@ function addClass_option2(className)
     }
 
     div.className = classes.join(' ');
-}
-
-function addClass(className)
-{
-    const div = document.getElementById('content');
-
-    if (div.classList.contains(className))
-        div.classList.remove(className);
-    else
-        div.classList.add(className);
 }
