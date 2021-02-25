@@ -44,7 +44,7 @@
           v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" />
+            <input type="checkbox" v-model="selectedUserIDs"  v-bind:id="user.id" v-bind:value="user.id" />
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -52,38 +52,38 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button v-on:click="flipStatus(user.id)" class="btnEnableDisable">{{user.status === 'Active'?'Disable':'Enable'}}</button>
           </td>
         </tr>
       </tbody>
     </table>
 
     <div class="all-actions">
-      <button>Enable Users</button>
-      <button>Disable Users</button>
-      <button>Delete Users</button>
+      <button v-on:click="enableSelectedUsers" :disabled="actionButtonDisabled">Enable Users</button>
+      <button v-on:click="disableSelectedUsers" :disabled="actionButtonDisabled">Disable Users</button>
+      <button v-on:click="deleteSelectedUsers" :disabled="actionButtonDisabled">Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click="show">Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form v-on:submit.prevent="saveUser" v-show="showForm" id="frmAddNewUser">
       <div class="field">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" />
+        <input v-model="newUser.firstName" type="text" name="firstName" />
       </div>
       <div class="field">
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" />
+        <input v-model="newUser.lastName" type="text" name="lastName" />
       </div>
       <div class="field">
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input v-model="newUser.username" type="text" name="username" />
       </div>
       <div class="field">
         <label for="emailAddress">Email Address:</label>
-        <input type="text" name="emailAddress" />
+        <input v-model="newUser.emailAddress" type="text" name="emailAddress" />
       </div>
-      <button type="submit" class="btn save">Save User</button>
+      <button v-on:click="hide" type="submit" class="btn save">Save User</button>
     </form>
   </div>
 </template>
@@ -100,6 +100,7 @@ export default {
         emailAddress: "",
         status: ""
       },
+      showForm: false,
       newUser: {
         id: null,
         firstName: "",
@@ -108,6 +109,7 @@ export default {
         emailAddress: "",
         status: "Active"
       },
+      selectedUserIDs: [],
       users: [
         {
           id: 1,
@@ -160,7 +162,60 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    show() {
+      this.showForm = true;
+    },
+    hide() {
+      this.showForm = false;
+    },
+    clear() {
+      this.newUser = {
+        id: null,
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "Active"
+      }
+    },
+    clearChecked() {
+      this.selectedUserIDs = [];
+    },
+    saveUser() {
+      if (Object.values(this.newUser).every(prop => prop !== '')) {
+        this.users.unshift(this.newUser);
+      }
+      
+       
+      this.clear();
+    },
+    flipStatus(id) {
+      let user = this.users.find(user => user.id === id);
+      user.status = user.status === 'Active'?'Disabled':'Active';
+    },
+    enableSelectedUsers() {
+      this.selectedUserIDs.forEach(id => {
+        let user = this.users.find(user => user.id === id);
+        user.status = 'Active';
+      });
+      this.clearChecked();
+    },
+    disableSelectedUsers() {
+      this.selectedUserIDs.forEach(id => {
+        let user = this.users.find(user => user.id === id);
+        user.status = 'Disabled';
+      });
+      this.clearChecked();
+    },
+    deleteSelectedUsers() {
+      this.selectedUserIDs.forEach(id => {
+        this.users.splice(this.users.findIndex(user => user.id === id), 1);
+      });
+      this.clearChecked();
+    }
+    
+  },
   computed: {
     filteredList() {
       let filteredUsers = this.users;
@@ -198,9 +253,12 @@ export default {
         );
       }
       return filteredUsers;
+    },
+    actionButtonDisabled() {
+      return this.selectedUserIDs.length === 0;
     }
   }
-};
+}
 </script>
 
 <style scoped>
