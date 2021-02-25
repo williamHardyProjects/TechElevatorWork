@@ -15,7 +15,7 @@
       <tbody>
         <tr>
           <td>
-            <input type="checkbox" id="selectAll" />
+            <input type="checkbox" v-on:change="toggleSelect" v-model="selectAll" id="selectAll" />
           </td>
           <td>
             <input type="text" id="firstNameFilter" v-model="filter.firstName" />
@@ -44,7 +44,7 @@
           v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-model="selectedUserIDs"  v-bind:id="user.id" v-bind:value="user.id" />
+            <input v-on:change="updateSelectAll" type="checkbox" v-model="selectedUserIDs"  v-bind:id="user.id" v-bind:value="user.id" />
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -109,6 +109,7 @@ export default {
         emailAddress: "",
         status: "Active"
       },
+      selectAll: false,
       selectedUserIDs: [],
       users: [
         {
@@ -213,8 +214,21 @@ export default {
         this.users.splice(this.users.findIndex(user => user.id === id), 1);
       });
       this.clearChecked();
+    },
+    toggleSelect() {
+      if (this.selectAll) {
+        this.users.forEach(user => {
+          if (!this.selectedUserIDs.includes(user.id)) {
+            this.selectedUserIDs.push(user.id);
+          }
+        })
+      }else {
+        this.selectedUserIDs = [];
+      }
+    },
+    updateSelectAll() {
+      this.selectAll = this.selectedUserIDs.length === this.users.length;
     }
-    
   },
   computed: {
     filteredList() {
