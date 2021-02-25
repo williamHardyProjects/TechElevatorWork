@@ -1,3 +1,4 @@
+/*finished with vue*/
 <template>
   <div class="card">
 
