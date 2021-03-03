@@ -34,6 +34,12 @@ export default {
         title: this.title,
         messageText: this.messageText
       };
+      messageService.edit(message.id, message)
+                    .then(response => {
+                      if (response.status === 200) {
+                        this.$router.push(`/${message.topicId}`);
+                      }
+                    });
       // call update in message service
     }
   },
